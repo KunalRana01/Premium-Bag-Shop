@@ -1,5 +1,4 @@
-const mongoose = require("mongoose")
-
+const mongoose = require("mongoose");
 
 const ownerSchema = mongoose.Schema(
     {
@@ -20,5 +19,4 @@ const ownerSchema = mongoose.Schema(
     }
 )
 
-
-module.exports = mongoose.model(ownerSchema , "owner")
+module.exports = mongoose.model("owner" , ownerSchema);

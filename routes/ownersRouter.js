@@ -31,8 +31,6 @@ if(process.env.NODE_ENV==="development"){
 router.get("/" , (req,res)=>{
     res.send("Working...");
 })
-console.log(process.env.NODE_ENV);
-
 
 
 module.exports = router;

@@ -14,7 +14,8 @@ module.exports.registerUser = async (req,res)=>{
         let user = await userModel.findOne({email:email});
 
         if(user){
-            return res.status(401).send("You already have an account , please login.");
+            req.flash("error" , "You already have an account , please login.");
+            return res.status(401).redirect("/");
         }else{
             bcrypt.hash(password, 10, async function(err, hash) {
             
@@ -56,9 +57,10 @@ module.exports.loginUser = async (req,res)=>{
         if(result){
             let token = generateToken(user);
             res.cookie("token" , token);
-            res.send("You can login");
+            res.redirect("/shop");
         }else{
-            res.status(401).send("Username or password incorrect !");
+            req.flash("error" , "Username or password incorrect !");
+            res.status(401).redirect("/");
         }
     });
 

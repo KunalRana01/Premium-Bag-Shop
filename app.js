@@ -7,12 +7,22 @@ const usersRouter = require("./routes/usersRouter.js");
 const productsRouter = require("./routes/productsRouter.js");
 const ownersRouter = require("./routes/ownersRouter.js");
 const dotenv = require("dotenv").config();  //lets us use the .env vars using process.env.
+const expressSession = require("express-session");
+const flash = require("connect-flash");
 const app = express();
 
 app.set("view engine" , "ejs");
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser());
+app.use(
+    expressSession({
+        secret : process.env.EXPRESS_SESSION_SECRET,
+        resave : false,
+        saveUninitialized : false
+    })
+);
+app.use(flash());
 app.use(express.static(path.join(__dirname , "public")));
 
 

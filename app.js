@@ -10,6 +10,7 @@ const dotenv = require("dotenv").config();  //lets us use the .env vars using pr
 const expressSession = require("express-session");
 const flash = require("connect-flash");
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.set("view engine" , "ejs");
 app.use(express.json());
@@ -33,4 +34,7 @@ app.use("/owners" , ownersRouter);
 app.use("/products" , productsRouter);
 app.use("/" , indexRouter);
 
-app.listen(3000);
+app.listen(port , ()=>{
+    console.log(`Server started at http://127.0.0.1:${port}/`);
+    
+});

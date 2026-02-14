@@ -11,7 +11,7 @@ module.exports.isLoggedIn = async (req , res , next)=>{
     try{
         let decodedToken = jwt.verify(req.cookies.token , process.env.JWT_KEY);
 
-        let user = await userModel.findOne({email : decoded.email}).select("-password");
+        let user = await userModel.findOne({email : decodedToken.email}).select("-password");
         req.user = user;
         next();
     }catch(err){
